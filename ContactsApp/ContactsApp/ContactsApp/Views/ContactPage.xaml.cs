@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContactsApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace ContactsApp
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new ContactPageViewModel();
         }
     }
 }
