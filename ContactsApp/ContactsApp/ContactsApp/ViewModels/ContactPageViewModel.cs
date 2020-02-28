@@ -51,7 +51,7 @@ namespace ContactsApp.ViewModels
 
         async void DisplayElementSelected()
         {
-            await App.MainPage.Navigation.PushAsync(new ContactPage())
+            await App.Current.MainPage.Navigation.PushAsync(new MainPage());
         }
         public event PropertyChangedEventHandler PropertyChanged;
     }

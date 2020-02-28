@@ -1,6 +1,8 @@
-﻿using ContactsApp.ViewModels;
+﻿using ContactsApp.Models;
+using ContactsApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -14,10 +16,10 @@ namespace ContactsApp
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        public MainPage(ObservableCollection<Contact>)
+        public MainPage(ObservableCollection<Contact> contacts)
         {
             InitializeComponent();
-            BindingContext = new ContactPageViewModel();
+            BindingContext = new ContactPageViewModel(contacts);
         }
     }
 }

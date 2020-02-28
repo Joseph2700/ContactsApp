@@ -4,17 +4,26 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="ContactsApp.MainPage">
+             x:Class="ContactsApp.MainPage"
+             x:Name="ContactPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Name ="AddItem" Order="Primary" Text="ADD" Priority="1" Command="{Binding GoToAddCommand}"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Contacts}">
+            <ListView ItemsSource="{Binding Contacts}"
+                      SelectedItem="{Binding ContactSelected, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Delete"
+                                          IsDestructive="True"
+                                          Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference ContactPage}}"
+                                          CommandParameter="{Binding .}"/>
+                                <MenuItem Text="More"/>
+                            </ViewCell.ContextActions>
                             <StackLayout>
                                 <Label Text="{Binding Name}"/>
                                 <Label Text="{Binding Number}"/>

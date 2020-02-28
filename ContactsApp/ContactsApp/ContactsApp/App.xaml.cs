@@ -10,7 +10,7 @@ namespace ContactsApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainPage(null));
         }
 
         protected override void OnStart()
