@@ -14,7 +14,7 @@ namespace ContactsApp
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        public MainPage(ObservableCollection<Contact>)
         {
             InitializeComponent();
             BindingContext = new ContactPageViewModel();
