@@ -22,7 +22,9 @@
                                           IsDestructive="True"
                                           Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference ContactPage}}"
                                           CommandParameter="{Binding .}"/>
-                                <MenuItem Text="More"/>
+                                <MenuItem Text="More"
+                                          Command="{Binding Path=BindingContext.MoreCommand, Source={x:Reference ContactPage}}"
+                                          CommandParameter="{Binding .}"/>
                             </ViewCell.ContextActions>
                             <StackLayout>
                                 <Label Text="{Binding Name}"/>

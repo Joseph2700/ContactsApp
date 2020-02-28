@@ -11,26 +11,10 @@ namespace ContactsApp.ViewModels
 {
     public class AddPageViewModel : INotifyPropertyChanged
     {
-        public ICommand AddContactCommand { get; set; }
-        Contact _contactSelected;
-        public Contact ContactSelected
-        {
-            get
-            {
-                return _contactSelected;
-            }
-            set
-            {
-                _contactSelected = value;
-            }
-        }
+        ObservableCollection<Contact> _contacts;
         public AddPageViewModel(ObservableCollection<Contact> contacts)
         {
-            AddContactCommand = new Command<Contact>((param) =>
-            {
-                Contacts.Add(new Contact() { Name = ContactSelected.Name, Number = ContactSelected.Number });
-
-            });
+            _contacts = contacts;
         }
         public event PropertyChangedEventHandler PropertyChanged;
     }

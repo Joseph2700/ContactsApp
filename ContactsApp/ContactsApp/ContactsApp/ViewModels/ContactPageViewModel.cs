@@ -14,6 +14,9 @@ namespace ContactsApp.ViewModels
     {        
         public ObservableCollection<Contact> Contacts { get; set; } = new ObservableCollection<Contact>();
         public ICommand GoToAddCommand { get; set; }
+        public ICommand AddContactCommand { get; set; }
+        public ICommand MoreCommand { get; set; }
+        public ICommand DeleteContactCommand { get; set; }
         Contact _contactSelected; 
         public Contact ContactSelected { get
             {
@@ -27,20 +30,29 @@ namespace ContactsApp.ViewModels
                     
                 }
             }
-        }
-            
-        public ICommand AddContactCommand { get; set; }
+        }                    
         public ContactPageViewModel()
         {
             Contacts.Add(new Contact() { Name = "Jose", Number = "8099860892" });
             GoToAddCommand = new Command(async () =>
             {
-                await App.Current.MainPage.Navigation.PushAsync(new AddPage());
+                await App.Current.MainPage.Navigation.PushAsync(new AddPage(Contacts));
             });
 
-            AddContactCommand = new Command<Contact>((param) =>
+            AddContactCommand = new Command<Contact>( async (param) =>
             {
                 Contacts.Add(new Contact() { Name = ContactSelected.Name, Number = ContactSelected.Number });
+                await App.Current.MainPage.Navigation.PopAsync();
+            });
+
+            MoreCommand = new Command(async () =>
+            {
+                await App.Current.MainPage.DisplayActionSheet("Options", "Cancel", "Cancel", $"Call {ContactSelected.Number}", "Edit");
+            });
+            DeleteContactCommand = new Command<Contact>(async (param) =>
+            {
+                Contacts.Remove(param);
+                await App.Current.MainPage.Navigation.PopAsync();
             });
         }                      
         
